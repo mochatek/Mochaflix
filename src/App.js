@@ -1,6 +1,7 @@
 import Header from "./components/Header";
 import Billboard from "./components/Billboard";
 import Carousel from "./components/Carousel";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
       <Billboard />
       <Carousel title={"Popular On Mochaflix"} />
       <Carousel title={"Popular On Mochaflix"} />
+      <Footer />
     </>
   );
 }

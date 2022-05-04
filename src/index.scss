@@ -106,6 +106,7 @@ article {
         height: 100%;
         z-index: 10;
         border: none;
+        outline: none;
         cursor: pointer;
         @media screen and (max-width: 660px) {
             display: none;
@@ -156,4 +157,42 @@ article {
             }
         }
     }
+}
+
+footer {
+    padding-bottom: 3rem;
+    color: hsl(0, 0%, 46%);
+    @include side-paddings;
+    ul {
+        padding-left: 0;
+        margin: 2rem 0;
+        list-style: none;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        row-gap: 1rem;
+        @media screen and (max-width: 660px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        li {
+            font-size: smaller;
+        }
+    }
+    div {
+        display: inline-block;
+        position: relative;
+        &::before {
+            position: absolute;
+            top: 28%;
+            left: 0.5rem;
+            content: '🌐';
+        }
+        select {
+            padding: 1rem 2rem;
+            border: 1px solid hsl(0, 0%, 46%);
+            background-color: black;
+            outline: none;
+            color: inherit;
+        }
+    }
+
 }
