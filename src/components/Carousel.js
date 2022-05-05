@@ -1,8 +1,26 @@
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
+import Api from "../lib/Api";
 
-const SCROLL_UNIT = 600;
+const SCROLL_UNIT = 700;
 
-function Carousel({ title }) {
+function Carousel({ name }) {
+  const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    new Api().get(name).then((data) => {
+      setLoading(false);
+      if ("error" in data) {
+        setItems([]);
+        setError(data.error);
+      } else {
+        setItems(data.results);
+        setError("");
+      }
+    });
+  }, [name]);
+
   const scroll_container = useRef(null);
 
   function previous() {
@@ -14,34 +32,36 @@ function Carousel({ title }) {
   }
 
   return (
-    <article className="carousel">
-      <h3>{title}</h3>
-      <section>
-        <button className="prev-btn" onClick={previous}>
-          <svg viewBox="0 0 24 24">
-            <path d="M11.56 5.56L10.5 4.5 6 9l4.5 4.5 1.06-1.06L8.12 9z"></path>
-          </svg>
-        </button>
-        <ul ref={scroll_container}>
-          {[1, 2, 3, 4, 5, 6, 7].map((_) => (
-            <li key={Date.now() + Math.random()}>
-              <a href="#movie">
-                <img
-                  alt="poster"
-                  loading="lazy"
-                  src="https://occ-0-6058-3663.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABaenZt4WFYfHi3Cgab25LxNZDlNVab779QItSFFf4AfvGk2HWp2j9QbaNjkfREk3jgikWNSsSW5YgIsW616ujlYzKhg.jpg?r=86a  "
-                />
-                <span>Mocha</span>
-              </a>
-            </li>
-          ))}
-        </ul>
-        <button className="next-btn" onClick={next}>
-          <svg viewBox="0 0 24 24">
-            <path d="M11.56 5.56L10.5 4.5 6 9l4.5 4.5 1.06-1.06L8.12 9z"></path>
-          </svg>
-        </button>
-      </section>
+    <article
+      className={
+        loading ? "carousel loading" : error ? "carousel error" : "carousel"
+      }
+    >
+      <h3>{name} Movies</h3>
+      {items.length > 0 && (
+        <section>
+          <button className="prev-btn" onClick={previous}>
+            <svg viewBox="0 0 24 24">
+              <path d="M11.56 5.56L10.5 4.5 6 9l4.5 4.5 1.06-1.06L8.12 9z"></path>
+            </svg>
+          </button>
+          <ul ref={scroll_container}>
+            {items.map(({ id, name, original_title, backdrop_path }) => (
+              <li key={id}>
+                <a href="#movie">
+                  <img alt="poster" src={backdrop_path} />
+                  <span>{name || original_title}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+          <button className="next-btn" onClick={next}>
+            <svg viewBox="0 0 24 24">
+              <path d="M11.56 5.56L10.5 4.5 6 9l4.5 4.5 1.06-1.06L8.12 9z"></path>
+            </svg>
+          </button>
+        </section>
+      )}
     </article>
   );
 }
