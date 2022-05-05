@@ -1,3 +1,5 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css");
+
 @mixin side-paddings($padding: 2rem) {
     padding-left: $padding;
     padding-right: $padding;
@@ -16,7 +18,6 @@ body {
     font-family: Helvetica,Arial,sans-serif;
 }
 
-
 header {
     padding: 0.75rem;
     @include side-paddings;
@@ -24,8 +25,14 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
     @media screen and (max-width: 660px) {
         @include side-paddings(1rem);
+        background-color: hsla(0, 0%, 0%, 0.8);
     }
     div {
         gap: 0.5rem;
@@ -46,10 +53,11 @@ header {
 button {
     padding: 0.5rem 1rem;
     border: 1px solid hsl(0, 0%, 53%);
-    border-radius: 0.1rem;
+    border-radius: 0.15rem;
     background-color: transparent;
     color: inherit;
     text-transform: uppercase;
+    outline: none;
     &:hover {
         background-color: rgb(45,45,45);
     }
@@ -63,7 +71,7 @@ button {
 }
 
 #billboard {
-    padding-top: 1.5rem;
+    padding-top: 1rem;
     @include side-paddings;
     @media screen and (max-width: 660px) {
         @include side-paddings(1rem);
@@ -84,9 +92,23 @@ button {
     }
 }
 
-article {
-    padding-bottom: 1rem;
+.carousel {
+    padding: 0.5rem 0;
     @include side-paddings;
+    &:nth-last-of-type(2) {
+        pointer-events: none;
+        filter: blur(5px);
+        position: relative;
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, hsl(0, 0%, 9%), hsla(0, 0%, 9%, 0.87), transparent);
+        }
+    }
     @media screen and (max-width: 660px) {
         @include side-paddings(1rem);
     }
@@ -95,66 +117,96 @@ article {
         margin-bottom: 0;
         margin-top: 2rem;
     }
-}
-
-.carousel {
-    position: relative;
-    button {
-        position: absolute;
-        top: 0;
-        margin: 0;
-        height: 100%;
-        z-index: 10;
-        border: none;
-        outline: none;
-        cursor: pointer;
-        @media screen and (max-width: 660px) {
-            display: none;
-        }
-        &.prev-btn {
-            left: 0;
-            padding: 0 4rem 0 0;
-            background: linear-gradient(to right, hsla(0, 0%, 9%, 1), hsla(0, 0%, 9%, 0.8), hsla(0, 0%, 9%, 0.5), transparent);
-        }
-        &.next-btn {
-            right: 0;
-            padding: 0 0 0 4rem;
-            background: linear-gradient(to right, hsla(0, 0%, 9%, 0), hsla(0, 0%, 9%, 0.5), hsla(0, 0%, 9%, 0.8), hsla(0, 0%, 9%, 1));
-            svg {
-                transform: rotate(180deg);
-            }
-        }
-        svg {
-            width: 3rem;
-            height: 3rem;
-            fill: hsl(357, 96%, 44%);
-        }
-    }
-    ul {
-        padding-left: 0;
-        list-style: none;
-        display: flex;
-        column-gap: 1vw;
-        overflow-x: hidden;
-        scroll-behavior: smooth;
-        @media screen and (max-width: 660px) {
-            overflow-x: scroll;
-            &::-webkit-scrollbar {
+    section {
+        position: relative;
+        button {
+            position: absolute;
+            top: 0;
+            margin: 0;
+            height: 100%;
+            z-index: 10;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            @media screen and (max-width: 660px) {
                 display: none;
             }
+            &.prev-btn {
+                left: 0;
+                padding: 0 4rem 0 0;
+                background: linear-gradient(to right, hsla(0, 0%, 9%, 1), hsla(0, 0%, 9%, 0.8), hsla(0, 0%, 9%, 0.5), transparent);
+            }
+            &.next-btn {
+                right: 0;
+                padding: 0 0 0 4rem;
+                background: linear-gradient(to right, hsla(0, 0%, 9%, 0), hsla(0, 0%, 9%, 0.5), hsla(0, 0%, 9%, 0.8), hsla(0, 0%, 9%, 1));
+                svg {
+                    transform: rotate(180deg);
+                }
+            }
+            svg {
+                width: 3rem;
+                height: 3rem;
+                fill: hsl(357, 96%, 44%);
+            }
         }
-        li {
-            text-align: center;
-            a {
-                text-decoration: none;
-                color: white;
-                img {
-                    width: 25vw;
-                    @media screen and (max-width: 660px) {
-                        width: 40vw;
+        ul {
+            padding-left: 0;
+            list-style: none;
+            display: flex;
+            column-gap: 2vw;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            @media screen and (max-width: 660px) {
+                overflow-x: scroll;
+                &::-webkit-scrollbar {
+                    display: none;
+                }
+            }
+            li {
+                text-align: center;
+                a {
+                    text-decoration: none;
+                    color: white;
+                    img {
+                        width: 25vw;
+                        @media screen and (max-width: 660px) {
+                            width: 40vw;
+                        }
                     }
                 }
             }
+        }
+    }
+}
+
+.banner {
+    font-size: 1.4rem;
+    @include side-paddings;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top: -6rem;
+    @media screen and (max-width: 660px) {
+        @include side-paddings(1rem);
+        font-size: 1rem;
+    }
+    p {
+        margin-top: 0;
+        width: 60%;
+        text-align: center;
+        text-align: center;
+        @media screen and (max-width: 660px) {
+            width: 90%;
+        }
+    }
+    button {
+        font-size: inherit;
+        padding: 0.5rem 2rem;
+        @media screen and (max-width: 660px) {
+            width: 90%;
         }
     }
 }
@@ -182,17 +234,27 @@ footer {
         position: relative;
         &::before {
             position: absolute;
-            top: 28%;
+            top: 33%;
             left: 0.5rem;
-            content: '🌐';
+            font-family: 'FontAwesome';
+            content: '\f0ac'
+        }
+        &::after {
+            position: absolute;
+            top: 30%;
+            right: 0.5rem;
+            font-family: 'FontAwesome';
+            content: '\f0d7';
+            pointer-events: inherit;
         }
         select {
             padding: 1rem 2rem;
-            border: 1px solid hsl(0, 0%, 46%);
+            border: 1px solid hsl(0, 0%, 26%);
+            border-radius: 0.2rem;
             background-color: black;
             outline: none;
             color: inherit;
+            appearance: none;
         }
     }
-
 }

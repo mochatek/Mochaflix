@@ -14,9 +14,9 @@ function Carousel({ title }) {
   }
 
   return (
-    <article>
+    <article className="carousel">
       <h3>{title}</h3>
-      <section className="carousel">
+      <section>
         <button className="prev-btn" onClick={previous}>
           <svg viewBox="0 0 24 24">
             <path d="M11.56 5.56L10.5 4.5 6 9l4.5 4.5 1.06-1.06L8.12 9z"></path>
