@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 import useCarousel from "../hooks/useCarousel";
 import { SCROLL_UNIT } from "../lib/constants";
 
@@ -34,10 +35,10 @@ function Carousel({ category }) {
           <ul ref={scroll_container}>
             {items.map(({ id, title, poster }) => (
               <li key={id}>
-                <a href="#movie">
+                <Link to={`/movie/${id}`}>
                   <img alt="poster" src={poster} />
                   <span>{title}</span>
-                </a>
+                </Link>
               </li>
             ))}
           </ul>

@@ -1,24 +1,19 @@
-import { useState, useEffect } from "react";
-import Api from "../lib/Api";
+import { Link } from "react-router-dom";
 
-function SimilarMovies({ movie_id }) {
-  const [similar, setSimilar] = useState([]);
-
-  useEffect(() => {
-    new Api()
-      .load("Similar", movie_id, 12)
-      .then((data) => setSimilar(data.results));
-  }, [movie_id]);
-
+function SimilarMovies({ similar }) {
   return (
-    <article id="similars">
-      <h2>More Like This</h2>
-      <div>
-        {similar.map(({ id, poster }) => (
-          <img key={id} alt="poster" src={poster} />
-        ))}
-      </div>
-    </article>
+    similar && (
+      <article id="similars">
+        <h2>More Like This</h2>
+        <div>
+          {similar.map(({ id, poster }) => (
+            <Link to={`/movie/${id}`} key={id}>
+              <img alt="poster" src={poster} />
+            </Link>
+          ))}
+        </div>
+      </article>
+    )
   );
 }
 

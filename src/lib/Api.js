@@ -11,7 +11,7 @@ export default class Api {
 
     switch (category) {
       case "Top Rated":
-        endpoint = `${this.baseURI}/movies/top_rated?api_key=${this.api_key}`;
+        endpoint = `${this.baseURI}/movie/top_rated?api_key=${this.api_key}`;
         break;
       case "Similar":
         endpoint = `${this.baseURI}/movie/${movie_id}/similar?api_key=${this.api_key}`;

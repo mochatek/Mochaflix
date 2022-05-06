@@ -1,17 +1,10 @@
 import Advertisement from "./Advertisement";
-import { useState, useEffect } from "react";
-import Api from "../lib/Api";
+import { forwardRef } from "react";
 
-function MovieDetails({ movie_id }) {
-  const [details, setDetails] = useState(null);
-
-  useEffect(() => {
-    new Api().get(movie_id).then((data) => setDetails(data));
-  }, [movie_id]);
-
+const MovieDetails = forwardRef(({ details }, ref) => {
   return (
     details && (
-      <article id="basic">
+      <article id="basic" ref={ref}>
         <img alt="poster" src={details.poster} loading="eager" />
         <section>
           <div>
@@ -36,6 +29,6 @@ function MovieDetails({ movie_id }) {
       </article>
     )
   );
-}
+});
 
 export default MovieDetails;

@@ -4,10 +4,12 @@ import Icon from "../assets/icon.png";
 function Header() {
   return (
     <header>
-      <picture>
-        <source srcSet={Icon} media="(max-width: 660px)" />
-        <img alt="logo" src={Logo} />
-      </picture>
+      <a href="/">
+        <picture>
+          <source srcSet={Icon} media="(max-width: 660px)" />
+          <img alt="logo" src={Logo} />
+        </picture>
+      </a>
       <div>
         <small>UNLIMITED TV SHOWS & MOVIES</small>
         <button className="btn-red">join now</button>
