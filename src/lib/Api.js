@@ -32,11 +32,15 @@ export default class Api {
     };
   }
 
-  async get(type) {
-    let endpoint = this.endpoints[type];
+  async load(category) {
+    let endpoint = this.endpoints[category];
     if (!endpoint) {
-      const genre_id = GENRE_MAP[type] || 28;
-      endpoint = `${this.server}/discover/movie?api_key=${this.api_key}&with_genres=${genre_id}`;
+      const genre_id = GENRE_MAP[category];
+      if (!genre_id) {
+        return { error: "Invalid category." };
+      } else {
+        endpoint = `${this.server}/discover/movie?api_key=${this.api_key}&with_genres=${genre_id}`;
+      }
     }
 
     try {
@@ -45,9 +49,11 @@ export default class Api {
       return {
         results: results
           .filter((item) => item.backdrop_path)
+          .slice(0, 10)
           .map((item) => ({
-            ...item,
-            backdrop_path: `https://image.tmdb.org/t/p/original/${item.backdrop_path}`,
+            id: item.id,
+            title: item.name || item.original_title,
+            poster: `https://image.tmdb.org/t/p/original/${item.backdrop_path}`,
           })),
       };
     } catch (error) {

@@ -1,20 +1,4 @@
-const FOOTER_ITEMS = [
-  "FAQ",
-  "Help Centre",
-  "Account",
-  "Media Centre",
-  "Invester Relations",
-  "Jobs",
-  "Ways to Watch",
-  "Terms of Use",
-  "Privacy",
-  "Cookie Preferences",
-  "Corporate Informations",
-  "Contact Us",
-  "Speed Test",
-  "Legal Notices",
-  "Only on Mochaflix",
-];
+import { FOOTER_ITEMS } from "../lib/constants";
 
 function Footer() {
   return (

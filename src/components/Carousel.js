@@ -1,25 +1,9 @@
-import { useRef, useState, useEffect } from "react";
-import Api from "../lib/Api";
+import { useRef } from "react";
+import useCarousel from "../hooks/useCarousel";
+import { SCROLL_UNIT } from "../lib/constants";
 
-const SCROLL_UNIT = 700;
-
-function Carousel({ name }) {
-  const [items, setItems] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
-
-  useEffect(() => {
-    new Api().get(name).then((data) => {
-      setLoading(false);
-      if ("error" in data) {
-        setItems([]);
-        setError(data.error);
-      } else {
-        setItems(data.results);
-        setError("");
-      }
-    });
-  }, [name]);
+function Carousel({ category }) {
+  const { loading, items, error } = useCarousel(category);
 
   const scroll_container = useRef(null);
 
@@ -36,8 +20,9 @@ function Carousel({ name }) {
       className={
         loading ? "carousel loading" : error ? "carousel error" : "carousel"
       }
+      data-error={error}
     >
-      <h3>{name} Movies</h3>
+      <h3>{category} Movies</h3>
       {items.length > 0 && (
         <section>
           <button className="prev-btn" onClick={previous}>
@@ -45,16 +30,18 @@ function Carousel({ name }) {
               <path d="M11.56 5.56L10.5 4.5 6 9l4.5 4.5 1.06-1.06L8.12 9z"></path>
             </svg>
           </button>
+
           <ul ref={scroll_container}>
-            {items.map(({ id, name, original_title, backdrop_path }) => (
+            {items.map(({ id, title, poster }) => (
               <li key={id}>
                 <a href="#movie">
-                  <img alt="poster" src={backdrop_path} />
-                  <span>{name || original_title}</span>
+                  <img alt="poster" src={poster} />
+                  <span>{title}</span>
                 </a>
               </li>
             ))}
           </ul>
+
           <button className="next-btn" onClick={next}>
             <svg viewBox="0 0 24 24">
               <path d="M11.56 5.56L10.5 4.5 6 9l4.5 4.5 1.06-1.06L8.12 9z"></path>

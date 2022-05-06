@@ -3,19 +3,7 @@ import Billboard from "./components/Billboard";
 import Carousel from "./components/Carousel";
 import Banner from "./components/Banner";
 import Footer from "./components/Footer";
-
-const CATEGORIES = [
-  "Latest",
-  "Trending",
-  "Top rated",
-  "Family",
-  "Action",
-  "Thriller",
-  "Horror",
-  "Comedy",
-  "Crime",
-  "Documentary",
-];
+import { CATEGORIES } from "./lib/constants";
 
 function App() {
   return (
@@ -23,7 +11,7 @@ function App() {
       <Header />
       <Billboard />
       {CATEGORIES.map((category) => (
-        <Carousel key={category} name={category} />
+        <Carousel key={category} category={category} />
       ))}
       <Banner />
       <Footer />

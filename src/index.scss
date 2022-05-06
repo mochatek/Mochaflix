@@ -130,7 +130,7 @@ button {
             padding: 1rem 2rem;
             font-size: small;
             font-family: Helvetica,'FontAwesome';
-            content: '\f071  Could not load movies.';
+            content: '\f071' ' ' attr(data-error);
             position: absolute;
             color: hsla(357, 96%, 44%, 0.95);
             background: linear-gradient(to right, transparent, hsla(357, 96%, 44%, 0.15), transparent);
