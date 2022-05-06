@@ -6,7 +6,7 @@ import "../scss/Movie.scss";
 function Movie() {
   return (
     <Fragment>
-      <MovieDetails />
+      <MovieDetails movie_id="508947" />
       <blockquote className="muted">
         A <strong>Netflix</strong> clone by{" "}
         <a rel="noreferrer" target="_blank" href="https://github.com/mochatek">
@@ -18,7 +18,7 @@ function Movie() {
         </a>
         .
       </blockquote>
-      <SimilarMovies />
+      <SimilarMovies movie_id="508947" />
     </Fragment>
   );
 }

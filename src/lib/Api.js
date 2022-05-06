@@ -1,46 +1,24 @@
-const NETFLIX_ID = 123;
-const GENRE_MAP = {
-  Action: 28,
-  Adventure: 12,
-  Animation: 16,
-  Comedy: 35,
-  Crime: 80,
-  Documentary: 99,
-  Drama: 18,
-  Family: 10751,
-  Fantasy: 14,
-  History: 36,
-  Horror: 27,
-  Music: 10402,
-  Mystery: 9648,
-  Romance: 10749,
-  "Science Fiction": 878,
-  "TV Movie": 10770,
-  Thriller: 53,
-  War: 10752,
-  Western: 37,
-};
+import { GENRE_MAP } from "../lib/constants";
 
 export default class Api {
   constructor() {
     this.api_key = "4251ad6189656cd33f14d643b1a4779c";
-    this.server = "https://api.themoviedb.org/3";
-    this.endpoints = {
-      Latest: `${this.server}/discover/tv?api_key=${this.api_key}&with_network=${NETFLIX_ID}`,
-      Trending: `${this.server}/trending/all/week?api_key=${this.api_key}`,
-      "Top Rated": `${this.server}/movie/top_rated?api_key=${this.api_key}`,
-    };
+    this.baseURI = "https://api.themoviedb.org/3";
   }
 
-  async load(category) {
-    let endpoint = this.endpoints[category];
-    if (!endpoint) {
-      const genre_id = GENRE_MAP[category];
-      if (!genre_id) {
-        return { error: "Invalid category." };
-      } else {
-        endpoint = `${this.server}/discover/movie?api_key=${this.api_key}&with_genres=${genre_id}`;
-      }
+  async load(category, movie_id, limit = 10) {
+    let endpoint;
+
+    switch (category) {
+      case "Top Rated":
+        endpoint = `${this.baseURI}/movies/top_rated?api_key=${this.api_key}`;
+        break;
+      case "Similar":
+        endpoint = `${this.baseURI}/movie/${movie_id}/similar?api_key=${this.api_key}`;
+        break;
+      default:
+        endpoint = `${this.baseURI}/discover/movie?api_key=${this.api_key}&with_genres=${GENRE_MAP[category]}`;
+        break;
     }
 
     try {
@@ -49,12 +27,39 @@ export default class Api {
       return {
         results: results
           .filter((item) => item.backdrop_path)
-          .slice(0, 10)
+          .slice(0, limit)
           .map((item) => ({
             id: item.id,
             title: item.name || item.original_title,
             poster: `https://image.tmdb.org/t/p/original/${item.backdrop_path}`,
           })),
+      };
+    } catch (error) {
+      return { error: error.message };
+    }
+  }
+
+  async get(movie_id) {
+    try {
+      const response = await fetch(
+        `${this.baseURI}/movie/${movie_id}?api_key=${this.api_key}`
+      );
+      const data = await response.json();
+      return {
+        title: data.title || data.original_title,
+        release: data.release_date.split("-")[0],
+        poster: `https://image.tmdb.org/t/p/original/${data.backdrop_path}`,
+        genres: data.genres
+          .slice(0, 3)
+          .map((g) => g.name)
+          .join(", "),
+        overview: data.overview,
+        runtime: `${data.runtime}m`,
+        rating: data.vote_average,
+        language: data.spoken_languages
+          .slice(0, 3)
+          .map((l) => l.english_name)
+          .join(", "),
       };
     } catch (error) {
       return { error: error.message };
