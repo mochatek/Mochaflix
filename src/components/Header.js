@@ -1,5 +1,5 @@
-import Logo from "../logo.png";
-import Icon from "../icon.png";
+import Logo from "../assets/logo.png";
+import Icon from "../assets/icon.png";
 
 function Header() {
   return (
