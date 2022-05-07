@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/Mochaflix/static/css/main.45d4da80.css",
+    "main.js": "/Mochaflix/static/js/main.b4d15701.js",
+    "static/css/818.783e9925.chunk.css": "/Mochaflix/static/css/818.783e9925.chunk.css",
+    "static/js/818.bb20bd2f.chunk.js": "/Mochaflix/static/js/818.bb20bd2f.chunk.js",
+    "static/css/820.ab48b1f4.chunk.css": "/Mochaflix/static/css/820.ab48b1f4.chunk.css",
+    "static/js/820.b5907388.chunk.js": "/Mochaflix/static/js/820.b5907388.chunk.js",
+    "static/js/754.9036dde4.chunk.js": "/Mochaflix/static/js/754.9036dde4.chunk.js",
+    "static/media/logo.png": "/Mochaflix/static/media/logo.931d34585af6d1a2132d.png",
+    "index.html": "/Mochaflix/index.html",
+    "main.45d4da80.css.map": "/Mochaflix/static/css/main.45d4da80.css.map",
+    "main.b4d15701.js.map": "/Mochaflix/static/js/main.b4d15701.js.map",
+    "818.783e9925.chunk.css.map": "/Mochaflix/static/css/818.783e9925.chunk.css.map",
+    "818.bb20bd2f.chunk.js.map": "/Mochaflix/static/js/818.bb20bd2f.chunk.js.map",
+    "820.ab48b1f4.chunk.css.map": "/Mochaflix/static/css/820.ab48b1f4.chunk.css.map",
+    "820.b5907388.chunk.js.map": "/Mochaflix/static/js/820.b5907388.chunk.js.map",
+    "754.9036dde4.chunk.js.map": "/Mochaflix/static/js/754.9036dde4.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.45d4da80.css",
+    "static/js/main.b4d15701.js"
+  ]
+}
