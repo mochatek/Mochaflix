@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import Api from "../lib/Api";
-
-const api = new Api();
+import api from "../lib/Api";
 
 export default function useMovie() {
   const { movie_id } = useParams();

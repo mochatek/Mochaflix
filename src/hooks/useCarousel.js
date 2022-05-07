@@ -1,5 +1,5 @@
 import { useReducer, useEffect } from "react";
-import Api from "../lib/Api";
+import api from "../lib/Api";
 
 const FETCH_REQUEST = "FETCH_REQUEST";
 const FETCH_SUCCESS = "FETCH_SUCCESS";
@@ -52,7 +52,7 @@ export default function useCarousel(category) {
 
   useEffect(() => {
     dispatch(fetchRequest());
-    new Api().load(category).then((data) => {
+    api.load(category).then((data) => {
       if ("error" in data) {
         dispatch(fetchError(data.error));
       } else {

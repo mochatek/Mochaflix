@@ -9,7 +9,7 @@ body {
     margin: 0;
     padding: 0;
     height: 100vh;
-    background-color: hsl(0, 0%, 9%);
+    background-color: $bg-clr;
     color: white;
     font-family: Helvetica,Arial,sans-serif;
 }
@@ -17,7 +17,7 @@ body {
 header {
     padding: 0.75rem;
     @include side-paddings;
-    background-color: hsl(0, 0%, 0%);
+    background-color: black;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -28,7 +28,7 @@ header {
     z-index: 100;
     @media screen and (max-width: 660px) {
         @include side-paddings(1rem);
-        background-color: hsla(0, 0%, 0%, 0.8);
+        background-color: transparentize(black, 0.2);
     }
     div {
         gap: 0.5rem;
@@ -48,27 +48,27 @@ header {
 
 button {
     padding: 0.5rem 1rem;
-    border: 1px solid hsl(0, 0%, 53%);
+    border: 1px solid $bdr-clr;
     border-radius: 0.15rem;
     background-color: transparent;
     color: inherit;
     text-transform: uppercase;
     outline: none;
     &:hover {
-        background-color: rgb(45,45,45);
+        background-color: hsl(0, 0%, 18%);
     }
     &.btn-red {
-        background-color: hsl(357, 96%, 44%);
+        background-color: $pri-red;
         border: none;
         &:hover{
-            background-color: hsl(357, 95%, 49%);
+            background-color: $sec-red;
         }
     }
 }
 
 footer {
     padding-bottom: 3rem;
-    color: hsl(0, 0%, 46%);
+    color: $mut-clr;
     @include side-paddings;
     ul {
         padding-left: 0;
@@ -104,7 +104,7 @@ footer {
         }
         select {
             padding: 1rem 2rem;
-            border: 1px solid hsl(0, 0%, 26%);
+            border: 1px solid $bdr-clr;
             border-radius: 0.2rem;
             background-color: black;
             outline: none;

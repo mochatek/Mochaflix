@@ -1,6 +1,6 @@
 import { GENRE_MAP } from "../lib/constants";
 
-export default class Api {
+class Api {
   constructor() {
     this.api_key = "4251ad6189656cd33f14d643b1a4779c";
     this.baseURI = "https://api.themoviedb.org/3";
@@ -66,3 +66,5 @@ export default class Api {
     }
   }
 }
+
+export default new Api();

@@ -36,7 +36,7 @@
             content: '';
             position: absolute;
             display: block;
-            background: linear-gradient(to right, transparent, hsla(357, 96%, 44%, 0.15), transparent);
+            background: linear-gradient(to right, transparent, transparentize($pri-red, 0.85), transparent);
             animation: load 1.5s ease-in-out infinite;
             @keyframes load {
                 0% {
@@ -62,8 +62,8 @@
             font-family: Helvetica,'FontAwesome';
             content: '\f071' ' ' attr(data-error);
             position: absolute;
-            color: hsla(357, 96%, 44%, 0.95);
-            background: linear-gradient(to right, transparent, hsla(357, 96%, 44%, 0.15), transparent);
+            color: transparentize($pri-red, 0.05);
+            background: linear-gradient(to right, transparent, transparentize($pri-red, 0.85), transparent);
         }
     }
     &:nth-last-of-type(2) {
@@ -77,7 +77,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(to top, hsl(0, 0%, 9%), hsla(0, 0%, 9%, 0.87), transparent);
+            background: linear-gradient(to top, $bg-clr, transparentize($bg-clr, 0.13), transparent);
         }
     }
     @media screen and (max-width: 660px) {
@@ -104,12 +104,12 @@
             &.prev-btn {
                 left: 0;
                 padding: 0 4rem 0 0;
-                background: linear-gradient(to right, hsla(0, 0%, 9%, 1), hsla(0, 0%, 9%, 0.8), hsla(0, 0%, 9%, 0.5), transparent);
+                background: linear-gradient(to right, $bg-clr, transparentize($bg-clr, 0.2), transparentize($bg-clr, 0.5), transparent);
             }
             &.next-btn {
                 right: 0;
                 padding: 0 0 0 4rem;
-                background: linear-gradient(to right, hsla(0, 0%, 9%, 0), hsla(0, 0%, 9%, 0.5), hsla(0, 0%, 9%, 0.8), hsla(0, 0%, 9%, 1));
+                background: linear-gradient(to right, transparent, transparentize($bg-clr, 0.5), transparentize($bg-clr, 0.2), $bg-clr );
                 svg {
                     transform: rotate(180deg);
                 }
@@ -117,7 +117,7 @@
             svg {
                 width: 3rem;
                 height: 3rem;
-                fill: hsl(357, 96%, 44%);
+                fill: $pri-red;
             }
         }
         ul {

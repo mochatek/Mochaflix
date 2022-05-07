@@ -1,3 +1,5 @@
+@import 'partials';
+
 body {
     max-height: 100vh;
 }
@@ -14,17 +16,17 @@ body {
     }
     h1 {
         font-size: 3rem;
-        text-shadow: 2px 2px hsl(357, 96%, 44%);
+        text-shadow: 2px 2px $pri-red;
     }
     a {
         padding: 0.5rem 1rem;
         border-radius: 0.1rem;
         text-decoration: none;
         color: white;
-        background-color: hsl(357, 96%, 44%);
+        background-color: $pri-red;
         border: none;
         &:hover{
-            background-color: hsl(357, 95%, 49%);
+            background-color: $sec-red;
         }
     }
     p {
@@ -36,7 +38,7 @@ body {
             font-size: 1.5rem;
             letter-spacing: 0.2rem;
             font-family: monospace;
-            border-left: 2px solid hsl(357, 96%, 44%);
+            border-left: 2px solid $pri-red;
             color: hsla(0, 0%, 100%, 0.4);
             span {
                 color: white;

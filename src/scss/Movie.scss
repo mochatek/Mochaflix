@@ -12,8 +12,8 @@
         width: 100%;
         height: 102%;
         @include side-paddings;
-        background: linear-gradient(to right, hsla(0, 0%, 9%, 1), hsla(0, 0%, 9%, 0.9), hsla(0, 0%, 9%, 0.2), transparent),
-        linear-gradient(to top, hsla(0, 0%, 9%, 1) 1%, transparent 25%);
+        background: linear-gradient(to right, $bg-clr, transparentize($bg-clr, 0.1), transparentize($bg-clr, 0.8), transparent),
+        linear-gradient(to top, $bg-clr 1%, transparent 25%);
         @media screen and (max-width: 660px) {
             position: relative;
             width: 100%;
@@ -44,12 +44,12 @@
 }
 
 .muted {
-    color: hsl(0, 0%, 64%);
+    color: $mut-clr;
 }
 
 .boxed {
     padding: 0.1rem 0.2rem;
-    border: 1px solid hsl(0, 0%, 64%);
+    border: 1px solid $bdr-clr;
     border-radius: 0.1rem;
 }
 
@@ -60,8 +60,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: linear-gradient(to right,hsl(0, 0%, 20%) 5%,hsl(0, 0%, 9%) 95%);
-    box-shadow: 8px 5px 16px 0 hsla(0, 0%, 0%, 0.4);
+    background: linear-gradient(to right,hsl(0, 0%, 20%) 5%, $bg-clr 95%);
+    box-shadow: 8px 5px 16px 0 transparentize(black, 0.6);
     @media screen and (max-width: 660px) {
         font-size: small;
         padding: 0.6rem 1rem;
@@ -108,11 +108,11 @@ blockquote {
     line-height: 1.5rem;
     margin: 4rem 1.5rem 0 1.5rem;
     padding: 1rem 0;
-    border-top: 1px solid hsla(0, 0%, 64%, 0.5);
-    border-bottom: 1px solid hsla(0, 0%, 64%, 0.5);
+    border-top: 1px solid transparentize($mut-clr, 0.5);
+    border-bottom: 1px solid transparentize($mut-clr, 0.5);
     text-align: center;
     a {
         text-decoration: none;
-        color: hsla(357, 96%, 44%, 0.9);
+        color: transparentize($pri-red, 0.1);
     }
 }
