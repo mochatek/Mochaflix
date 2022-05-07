@@ -4,6 +4,6 @@
 
 A Netflix clone built in React.
 
-🟢 Project is live at : [Mochaflix](https://mochatek.github.io/Mochaflix)
+🟢 Project is live at : [Mochaflix](https://mochatek.github.io/Mochaflix/)
 
 > Mochaflix uses the TMDb API but is not endorsed or certified by [TMDb](https://www.themoviedb.org/).
