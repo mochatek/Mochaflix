@@ -4,7 +4,7 @@ import Icon from "../assets/icon.png";
 function Header() {
   return (
     <header>
-      <a href="/">
+      <a href="https://mochatek.github.io/Mochaflix/">
         <picture>
           <source srcSet={Icon} media="(max-width: 660px)" />
           <img alt="logo" src={Logo} />

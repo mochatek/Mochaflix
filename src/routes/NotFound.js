@@ -8,7 +8,7 @@ function NotFound() {
         Sorry, we can't find that page. You'll find lots to explore on the home
         page.
       </p>
-      <a href="/" className="btn-red">
+      <a href="https://mochatek.github.io/Mochaflix/" className="btn-red">
         Mochaflix Home
       </a>
       <p>
