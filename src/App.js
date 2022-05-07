@@ -1,3 +1,4 @@
+import Fallback from "./components/Fallback";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import NotFound from "./routes/NotFound";
@@ -13,7 +14,7 @@ function App() {
     <>
       <Header />
       <HashRouter>
-        <Suspense>
+        <Suspense fallback={<Fallback />}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="movie/:movie_id" element={<Movie />} />

@@ -113,3 +113,47 @@ footer {
         }
     }
 }
+
+.fallback {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 500;
+    background: $bg-clr;
+    div {
+        position: relative;
+        top: calc(50% - 64px);
+        left: calc(50% - 64px);
+        span {
+            position: absolute;
+            width: 32px;
+            background: linear-gradient(to top, transparentize($pri-red, 0.5), $sec-red);
+            animation: wave 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+            @keyframes wave {
+                0% {
+                top: 16px;
+                height: 128px;
+                }
+                50%, 100% {
+                top: 48px;
+                height: 64px;
+                }
+            }
+            &:nth-child(1) {
+                left: 16px;
+                animation-delay: -0.24s;
+            }
+            &:nth-child(2) {
+                left: 64px;
+                animation-delay: -0.12s;
+            }
+            &:nth-child(3) {
+                left: 112px;
+                animation-delay: 0;
+            }
+        }
+    }
+}
+
